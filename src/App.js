@@ -9,6 +9,7 @@ import AccountSetting from "./AccountSetting";
 import ResetPassword from "./ResetPassword";
 import Review from "./Review";
 import Contact from "./Contact";
+import BlogPost from "./BlogPost";
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/rp" exact component={ResetPassword} />
           <Route path="/rv" exact component={Review} />
           <Route path="/c" exact component={Contact} />
+          <Route path="/b" exact component={BlogPost} />
         </Switch>
       </Router>
     </div>
