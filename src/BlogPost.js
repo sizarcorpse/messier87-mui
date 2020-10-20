@@ -19,10 +19,13 @@ import {
   CardMedia,
   IconButton,
   CardActions,
-  TextareaAutosize
+  TextareaAutosize,
+  GridList,
+  GridListTile
 } from "@material-ui/core";
 import TitleIcon from "@material-ui/icons/Title";
 import FaceIcon from "@material-ui/icons/Face";
+import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 
 const ScmuiIconText = withStyles({
   root: {
@@ -107,11 +110,44 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 15,
     border: "1px solid #132743",
     borderRadius: 5
+  },
+  uploadImageButton: {
+    border: "1px solid #132743",
+    marginTop: "15px",
+    height: 400,
+    top: -15
+  },
+  upAndPreviewCard: {
+    border: "1px solid #132743",
+    background:
+      "linear-gradient(90deg, rgba(246,246,246,1) 7%, rgba(240,242,244,1) 26%, rgba(247,247,247,1) 66%, rgba(249,248,245,1) 100%)"
+  },
+  previewCard: {
+    maxHeight: 100,
+    minHeight: 100,
+    maxWidth: 100,
+    margin: "auto",
+    border: "1px solid #132743"
   }
 }));
 
 const BlogPost = () => {
   const classes = useStyles();
+  const [skillCoverPhoto, setSkillCoverPhoto] = useState(null);
+
+  const [previewCoverPhoto, setPreviewCoverPhoto] = useState([]);
+  const imp = useRef();
+
+  const handlePhotoUpload = (e) => {
+    let file = e.target.files;
+    var xx = [];
+    for (let i = 0; i < file.length; i++) {
+      xx.push(URL.createObjectURL(file[i]));
+    }
+    setPreviewCoverPhoto((cv) => [...cv, xx]);
+  };
+  // arr.push(URL.createObjectURL(pic)
+
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -161,14 +197,53 @@ const BlogPost = () => {
                   label="Title"
                   variant="outlined"
                   id="custom-css-outlined-input"
-                  rowsMin={26}
+                  rowsMin={13}
                   aria-label="maximum height"
                   placeholder="Give me a nice cool review"
                   defaultValue=""
                 />
               </FormControl>
             </Grid>
-
+            {previewCoverPhoto.length > 0 ? (
+              <Grid item xs={12}>
+                <GridList
+                  cellHeight={100}
+                  spacing={0}
+                  cols={3}
+                  className={classes.gridList}
+                >
+                  {previewCoverPhoto.map((pc) => (
+                    <GridListTile cols={1} spacing={0}>
+                      <Link>
+                        <Card className={classes.upAndPreviewCard}>
+                          <CardMedia
+                            component="img"
+                            alt="Contemplative Reptile"
+                            image={pc}
+                            onClick={() => imp.current.click()}
+                            className={classes.previewCard}
+                          />
+                        </Card>
+                      </Link>
+                    </GridListTile>
+                  ))}
+                </GridList>
+              </Grid>
+            ) : (
+              <Grid item xs={12}>
+                <Button
+                  variant="outlined"
+                  onClick={() => imp.current.click()}
+                  fullWidth
+                  className={classes.uploadImageButton}
+                >
+                  <AddPhotoAlternateIcon />
+                  <Typography style={{ marginLeft: "3px", marginRight: "5px" }}>
+                    Choose
+                  </Typography>
+                </Button>
+              </Grid>
+            )}
             <Grid item xs={12}>
               <Button
                 variant="contained"
@@ -192,6 +267,24 @@ const BlogPost = () => {
                 </Link>
               </Typography>
             </Grid>
+          </Grid>
+          <Grid item xs={12}>
+            <FormControl fullWidth>
+              <Input
+                inputProps={{
+                  className: classes.UpInput,
+                  ref: imp,
+                  multiple: true
+                }}
+                required
+                name="skillCoverPhoto"
+                label="skillCoverPhoto"
+                type="file"
+                id="skillCoverPhoto"
+                style={{ visibility: "hidden" }}
+                onChange={handlePhotoUpload}
+              />
+            </FormControl>
           </Grid>
         </form>
       </CardContent>
