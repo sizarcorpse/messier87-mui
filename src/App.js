@@ -8,6 +8,7 @@ import Signin from "./Signin";
 import AccountSetting from "./AccountSetting";
 import ResetPassword from "./ResetPassword";
 import Review from "./Review";
+import ReviewCard from "./ReviewCard";
 import Contact from "./Contact";
 import BlogPost from "./BlogPost";
 import Skill from "./Skill";
@@ -22,6 +23,7 @@ export default function App() {
           <Route path="/a" exact component={AccountSetting} />
           <Route path="/rp" exact component={ResetPassword} />
           <Route path="/rv" exact component={Review} />
+          <Route path="/rc" exact component={ReviewCard} />
           <Route path="/c" exact component={Contact} />
           <Route path="/b" exact component={BlogPost} />
           <Route path="/sk" exact component={Skill} />
