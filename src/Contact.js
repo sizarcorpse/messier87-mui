@@ -313,13 +313,6 @@ const Contact = () => {
                 <TextareaAutosize
                   required
                   className={classes.textArea}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <TitleIcon />
-                      </InputAdornment>
-                    )
-                  }}
                   label="Title"
                   variant="outlined"
                   id="custom-css-outlined-input"
@@ -339,7 +332,7 @@ const Contact = () => {
                 className={classes.submitButton}
               >
                 <Typography variant="h5" className={classes.submitButtonText}>
-                  Review Now
+                  Send
                 </Typography>
               </Button>
             </Grid>

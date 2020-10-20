@@ -10,6 +10,7 @@ import ResetPassword from "./ResetPassword";
 import Review from "./Review";
 import Contact from "./Contact";
 import BlogPost from "./BlogPost";
+import Skill from "./Skill";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/rv" exact component={Review} />
           <Route path="/c" exact component={Contact} />
           <Route path="/b" exact component={BlogPost} />
+          <Route path="/sk" exact component={Skill} />
         </Switch>
       </Router>
     </div>

@@ -20,11 +20,15 @@ import {
   IconButton,
   CardActions,
   TextareaAutosize,
-  GridList,
-  GridListTile
+  Select,
+  InputLabel,
+  InputBase,
+  MenuItem
 } from "@material-ui/core";
-import TitleIcon from "@material-ui/icons/Title";
-import FaceIcon from "@material-ui/icons/Face";
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import EqualizerIcon from "@material-ui/icons/Equalizer";
+import WebAssetIcon from "@material-ui/icons/WebAsset";
+import ImageIcon from "@material-ui/icons/Image";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 
 const ScmuiIconText = withStyles({
@@ -52,14 +56,13 @@ const ScmuiIconText = withStyles({
     "& .MuiInputBase-input": {
       height: "3px",
       fontSize: "15px"
-      // backgroundColor:'#eeeeee'
     }
   }
 })(TextField);
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    maxWidth: 800,
+    maxWidth: 400,
     maxHeight: 800,
     height: 800,
     padding: 20,
@@ -97,7 +100,9 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1.5,
     textTransform: "none"
   },
-
+  uploadImageButton: {
+    border: "1px solid #132743"
+  },
   LinkUnderlineRemove: {
     textTransform: "none",
     textDecoration: "none"
@@ -111,55 +116,61 @@ const useStyles = makeStyles((theme) => ({
     border: "1px solid #132743",
     borderRadius: 5
   },
-  uploadImageButton: {
-    border: "1px solid #132743",
-    marginTop: "15px",
-    height: 50,
-    top: -15
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "#132743"
+      }
+    },
+    "& .MuiOutlinedInput-input": {
+      padding: 11,
+      fontSize: 15
+    },
+    "& label": {
+      marginRight: 120,
+      top: 0,
+      color: "#14274e"
+    },
+    "& .MuiInputLabel-outlined": {
+      marginRight: 20
+    }
   },
-  upAndPreviewCard: {
-    background:
-      "linear-gradient(90deg, rgba(246,246,246,1) 7%, rgba(240,242,244,1) 26%, rgba(247,247,247,1) 66%, rgba(249,248,245,1) 100%)",
-    maxHeight: 120,
-    minHeight: 120,
-    maxWidth: 120,
-    margin: 5,
-    padding: 0
+  selectEmpty: {
+    marginTop: theme.spacing(1)
   },
-  previewCard: {
-    maxHeight: 120,
-    maxWidth: 120
-  },
-  GridList: {
-    overflow: "scroll"
+  InputLabel: {
+    top: 0,
+    color: "#132743"
   }
 }));
 
-const BlogPost = () => {
+const Skill = () => {
   const classes = useStyles();
+  const [labelWidth, setLabelWidth] = React.useState(0);
   const [skillCoverPhoto, setSkillCoverPhoto] = useState(null);
 
-  const [previewCoverPhoto, setPreviewCoverPhoto] = useState([]);
+  const [previewCoverPhoto, setPreviewCoverPhoto] = useState(null);
   const imp = useRef();
 
   const handlePhotoUpload = (e) => {
-    if (e.target.files) {
-      let file = e.target.files;
-      var xx = [];
-      for (let i = 0; i < file.length; i++) {
-        xx.push(URL.createObjectURL(file[i]));
-      }
-      setPreviewCoverPhoto((cv) => [...cv, xx]);
+    if (e.target.files[0]) {
+      setSkillCoverPhoto(e.target.files[0]);
+      setPreviewCoverPhoto(URL.createObjectURL(e.target.files[0]));
     }
   };
-  // arr.push(URL.createObjectURL(pic)
-
   return (
     <Card className={classes.card}>
       <CardHeader
         title={
           <Typography variant="h5" className={classes.headText}>
-            Whats in your Mind ?
+            Create Skill
+          </Typography>
+        }
+        subheader={
+          <Typography variant="h5" className={classes.neckText}>
+            Acquire new skills ? Lets share.
           </Typography>
         }
       />
@@ -168,7 +179,7 @@ const BlogPost = () => {
           marginTop: "25px",
           marginBottom: "25px"
         }}
-      />{" "}
+      />
       <CardContent>
         <form noValidate>
           <Grid container spacing={2}>
@@ -179,11 +190,12 @@ const BlogPost = () => {
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <TitleIcon />
+                        <AddBoxIcon />
                       </InputAdornment>
                     )
                   }}
-                  label="Title"
+                  required
+                  label="Name of Skill"
                   variant="outlined"
                   id="custom-css-outlined-input"
                 />
@@ -191,91 +203,108 @@ const BlogPost = () => {
             </Grid>
             <Grid item xs={12}>
               <FormControl error fullWidth>
-                <TextareaAutosize
-                  className={classes.textArea}
+                <ScmuiIconText
+                  className={classes.margin}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <TitleIcon />
+                        <EqualizerIcon />
                       </InputAdornment>
                     )
                   }}
+                  required
+                  label="Sill Level"
+                  variant="outlined"
+                  id="custom-css-outlined-input"
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl error fullWidth>
+                <ScmuiIconText
+                  className={classes.margin}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <WebAssetIcon />
+                      </InputAdornment>
+                    )
+                  }}
+                  required
+                  label="Website"
+                  variant="outlined"
+                  id="custom-css-outlined-input"
+                />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
+              <Button
+                variant="outlined"
+                onClick={() => imp.current.click()}
+                fullWidth
+                className={classes.uploadImageButton}
+              >
+                <AddPhotoAlternateIcon />
+                {previewCoverPhoto ? (
+                  previewCoverPhoto.name
+                ) : (
+                  <Typography style={{ marginLeft: "3px", marginRight: "5px" }}>
+                    Choose
+                  </Typography>
+                )}
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl error fullWidth required>
+                <TextareaAutosize
+                  required
+                  className={classes.textArea}
                   label="Title"
                   variant="outlined"
                   id="custom-css-outlined-input"
-                  rowsMin={13}
+                  rowsMin={8}
                   aria-label="maximum height"
-                  placeholder="Give me a nice cool review"
+                  placeholder="Your Message"
                   defaultValue=""
                 />
               </FormControl>
             </Grid>
-            {previewCoverPhoto.length > 0 ? (
-              <Grid item xs={12} style={{ overflow: "auto", maxHeight: 250 }}>
-                <GridList cellHeight={120} spacing={0} cols={5}>
-                  {previewCoverPhoto.map((pc) => (
-                    <GridListTile cols={1} spacing={0}>
-                      <Link>
-                        <Card className={classes.upAndPreviewCard}>
-                          <CardMedia
-                            component="img"
-                            alt="Contemplative Reptile"
-                            image={pc}
-                            onClick={() => imp.current.click()}
-                            className={classes.previewCard}
-                          />
-                        </Card>
-                      </Link>
-                    </GridListTile>
-                  ))}
-                </GridList>
-              </Grid>
-            ) : (
-              <Grid item xs={12}>
-                <Button
-                  variant="outlined"
-                  onClick={() => imp.current.click()}
-                  fullWidth
-                  className={classes.uploadImageButton}
-                >
-                  <AddPhotoAlternateIcon />
-                  <Typography style={{ marginLeft: "3px", marginRight: "5px" }}>
-                    Choose
-                  </Typography>
-                </Button>
-              </Grid>
-            )}
-            <Grid item xs={12}>
-              <Button
-                variant="contained"
-                color="primary"
-                fullWidth
-                className={classes.submitButton}
-              >
-                <Typography variant="h5" className={classes.submitButtonText}>
-                  Review Now
-                </Typography>
-              </Button>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography
-                variant="h5"
-                className={classes.neckText}
-                style={{ marginTop: 5 }}
-              >
-                <Link to={"/"} className={classes.LinkUnderlineRemove}>
-                  Not Now
-                </Link>
+          </Grid>
+          <Divider
+            style={{
+              marginTop: "25px",
+              marginBottom: "25px"
+            }}
+          />{" "}
+          <Grid item xs={12}>
+            <Button
+              variant="contained"
+              color="primary"
+              fullWidth
+              className={classes.submitButton}
+            >
+              <Typography variant="h5" className={classes.submitButtonText}>
+                Create Skill
               </Typography>
-            </Grid>
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Typography
+              variant="h5"
+              className={classes.neckText}
+              style={{ marginTop: 5 }}
+            >
+              <Link to={"/"} className={classes.LinkUnderlineRemove}>
+                Not Now
+              </Link>
+            </Typography>
           </Grid>
           <Grid item xs={12}>
             <FormControl fullWidth>
               <Input
                 inputProps={{
                   className: classes.UpInput,
-                  ref: imp,
-                  multiple: true
+                  ref: imp
                 }}
                 required
                 name="skillCoverPhoto"
@@ -292,5 +321,4 @@ const BlogPost = () => {
     </Card>
   );
 };
-
-export default BlogPost;
+export default Skill;
