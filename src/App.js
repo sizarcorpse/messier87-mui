@@ -12,6 +12,7 @@ import ReviewCard from "./ReviewCard";
 import Contact from "./Contact";
 import BlogPost from "./BlogPost";
 import Skill from "./Skill";
+import Profile from "./Profile";
 
 export default function App() {
   return (
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/c" exact component={Contact} />
           <Route path="/b" exact component={BlogPost} />
           <Route path="/sk" exact component={Skill} />
+          <Route path="/p" exact component={Profile} />
         </Switch>
       </Router>
     </div>
