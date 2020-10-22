@@ -32,6 +32,10 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import CodeIcon from "@material-ui/icons/Code";
 import { BorderAllRounded } from "@material-ui/icons";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import Collapse from "@material-ui/core/Collapse";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import clsx from "clsx";
+import FilterVintageIcon from "@material-ui/icons/FilterVintage";
 const useStyles = makeStyles((theme) => ({
   card: {
     maxWidth: 400,
@@ -40,8 +44,8 @@ const useStyles = makeStyles((theme) => ({
     background:
       "url(https://firebasestorage.googleapis.com/v0/b/messier87-development.appspot.com/o/wave.svg?alt=media&token=dead2046-9e45-4d55-a0ea-effb9435d89b)",
     backgroundRepeat: "no-repeat",
-    backgroundPosition: "bottom",
-    height: 763
+    backgroundPosition: "bottom"
+    // height: 763
   },
   avatar: {
     height: 110,
@@ -110,10 +114,38 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     fontStyle: "normal",
     color: "#696969"
+  },
+  neckTextBio: {
+    fontSize: 13,
+    fontWeight: 700,
+    fontStyle: "normal",
+    color: "#132743"
+  },
+  neckTextBiox: {
+    fontSize: 12,
+    fontWeight: 400,
+    fontStyle: "normal",
+    color: "#696969",
+    marginLeft: 15
+  },
+  expand: {
+    transform: "rotate(0deg)",
+    marginLeft: "auto",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest
+    })
+  },
+  expandOpen: {
+    transform: "rotate(180deg)"
   }
 }));
 const Profile = () => {
   const classes = useStyles();
+  const [expanded, setExpanded] = React.useState(false);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
   return (
     <Card className={classes.card}>
       <Grid container spacing={0}>
@@ -316,6 +348,242 @@ const Profile = () => {
               </CardContent>
             </Card>
           </CardContent>
+
+          <CardActions style={{ display: "contents" }}>
+            <IconButton
+              className={clsx(classes.expand, {
+                [classes.expandOpen]: expanded
+              })}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </CardActions>
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+              <Card className={classes.card2}>
+                <CardHeader
+                  avatar={
+                    <IconButton
+                      aria-label="share"
+                      style={{ marginTop: 0, padding: 0 }}
+                    >
+                      <FilterVintageIcon
+                        style={{
+                          fontSize: 20,
+                          marginTop: 0,
+                          marginRight: 10,
+                          color: "#132743"
+                        }}
+                      />
+                      <Typography variant="h5" className={classes.neckText2}>
+                        Cloud
+                      </Typography>
+                    </IconButton>
+                  }
+                />
+                <CardContent style={{ padding: 0, marginBottom: 20 }}>
+                  <Typography variant="body2" className={classes.neckText3}>
+                    Cloud Service Provider
+                  </Typography>
+                  <Grid container spacing={1} style={{ marginTop: 10 }}>
+                    <Grid
+                      item
+                      xs={12}
+                      style={{
+                        textAlign: "start",
+                        marginLeft: 20
+                      }}
+                    >
+                      <img
+                        src="https://firebasestorage.googleapis.com/v0/b/messier87-development.appspot.com/o/images%2Faws.jpg?alt=media&token=60d218a6-ae60-4d56-a096-39e2c962da9c"
+                        alt=""
+                        style={{
+                          height: 35,
+                          borderRadius: 5,
+                          marginRight: 5
+                        }}
+                        title="Firebase"
+                      />
+                    </Grid>
+                  </Grid>
+                </CardContent>
+
+                <CardContent style={{ padding: 0, marginBottom: 20 }}>
+                  <Typography variant="body2" className={classes.neckText3}>
+                    Top Skilled
+                  </Typography>
+                  <Grid container spacing={1} style={{ marginTop: 10 }}>
+                    <Grid
+                      item
+                      xs={12}
+                      style={{
+                        textAlign: "start",
+                        marginLeft: 20
+                      }}
+                    >
+                      <img
+                        src="https://firebasestorage.googleapis.com/v0/b/messier87-development.appspot.com/o/images%2Faws-eb.jpg?alt=media&token=6493023d-d217-4646-a676-7d6828812fb4"
+                        alt=""
+                        style={{ height: 35, borderRadius: 5, marginRight: 5 }}
+                        title="Firebase"
+                      />
+                      <img
+                        src="https://firebasestorage.googleapis.com/v0/b/messier87-development.appspot.com/o/images%2Fec.jpg?alt=media&token=a7454269-2603-471f-82ca-6e539da5826e"
+                        alt=""
+                        style={{ height: 35, borderRadius: 5, marginRight: 5 }}
+                        title="NodeJs"
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      xs={12}
+                      style={{
+                        marginLeft: 20,
+                        textAlign: "end"
+                      }}
+                    >
+                      <IconButton
+                        aria-label="share"
+                        style={{ marginTop: 0, padding: 0 }}
+                      >
+                        <Typography
+                          variant="h5"
+                          className={classes.neckTextMore}
+                        >
+                          Learn more
+                        </Typography>
+                        <ArrowForwardIcon
+                          style={{
+                            fontSize: 15,
+                            marginTop: 0,
+                            marginRight: 10,
+                            color: "#696969"
+                          }}
+                        />
+                      </IconButton>
+                    </Grid>
+                  </Grid>
+                </CardContent>
+              </Card>
+            </CardContent>
+            <CardContent>
+              <Card className={classes.card2}>
+                <CardHeader
+                  avatar={
+                    <IconButton
+                      aria-label="share"
+                      style={{ marginTop: 0, padding: 0 }}
+                    >
+                      <FilterVintageIcon
+                        style={{
+                          fontSize: 20,
+                          marginTop: 0,
+                          marginRight: 10,
+                          color: "#132743"
+                        }}
+                      />
+                      <Typography variant="h5" className={classes.neckText2}>
+                        Graphic Design
+                      </Typography>
+                    </IconButton>
+                  }
+                />
+
+                <CardContent style={{ padding: 0, marginBottom: 20 }}>
+                  <Typography variant="body2" className={classes.neckText3}>
+                    Top Skilled
+                  </Typography>
+                  <Grid container spacing={1} style={{ marginTop: 10 }}>
+                    <Grid
+                      item
+                      xs={12}
+                      style={{
+                        textAlign: "start",
+                        marginLeft: 20
+                      }}
+                    >
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg"
+                        alt=""
+                        style={{ height: 35, borderRadius: 5, marginRight: 5 }}
+                        title="Firebase"
+                      />
+                      <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/c/c2/Adobe_XD_CC_icon.svg"
+                        alt=""
+                        style={{ height: 35, borderRadius: 5, marginRight: 5 }}
+                        title="NodeJs"
+                      />
+                    </Grid>
+                    <Grid
+                      item
+                      xs={12}
+                      style={{
+                        marginLeft: 20,
+                        textAlign: "end"
+                      }}
+                    >
+                      <IconButton
+                        aria-label="share"
+                        style={{ marginTop: 0, padding: 0 }}
+                      >
+                        <Typography
+                          variant="h5"
+                          className={classes.neckTextMore}
+                        >
+                          Learn more
+                        </Typography>
+                        <ArrowForwardIcon
+                          style={{
+                            fontSize: 15,
+                            marginTop: 0,
+                            marginRight: 10,
+                            color: "#696969"
+                          }}
+                        />
+                      </IconButton>
+                    </Grid>
+                  </Grid>
+                </CardContent>
+              </Card>
+              <Divider
+                style={{
+                  marginTop: "40px",
+                  marginBottom: "0px"
+                }}
+              />
+            </CardContent>
+          </Collapse>
+
+          <Grid container>
+            <Grid item xs={12} style={{ textAlign: "start" }}>
+              <IconButton aria-label="share">
+                <InfoIcon
+                  style={{ fontSize: 14, marginRight: 5, color: "#132743" }}
+                />
+                <Typography variant="h5" className={classes.neckTextBio}>
+                  About me
+                </Typography>
+              </IconButton>
+            </Grid>
+            <Grid item xs={12} style={{ textAlign: "start", maxWidth: 370 }}>
+              <Typography
+                variant="body1"
+                coponent="p"
+                className={classes.neckTextBiox}
+              >
+                Thank you for viewing my work. As a photographer and retoucher,
+                my work is based on design, symmetry and minimalism. I am always
+                looking for the opportunity to work on projects that are
+                diverse, meaningful and challenging. I love to learn, solve,
+                create, and improve. Because of my love for photography I
+                started as an autodidact.
+              </Typography>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Card>
