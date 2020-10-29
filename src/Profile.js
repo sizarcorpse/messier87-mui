@@ -32,14 +32,14 @@ import TwitterIcon from "@material-ui/icons/Twitter";
 import CodeIcon from "@material-ui/icons/Code";
 import { BorderAllRounded } from "@material-ui/icons";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
-import Collapse from "@material-ui/core/Collapse";
+import { Collapse } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import clsx from "clsx";
 import FilterVintageIcon from "@material-ui/icons/FilterVintage";
 const useStyles = makeStyles((theme) => ({
   card: {
-    maxWidth: 400,
-    padding: 20,
+    maxWidth: 500,
+    padding: "20px 50px",
     paddingBottom: 100,
     background:
       "url(https://firebasestorage.googleapis.com/v0/b/messier87-development.appspot.com/o/wave.svg?alt=media&token=dead2046-9e45-4d55-a0ea-effb9435d89b)",
@@ -197,7 +197,7 @@ const Profile = () => {
                 <Button
                   variant="outlined"
                   color="primary"
-                  className={classes.submitButton}
+                  fullWidth
                   startIcon={<InfoIcon style={{ color: "#132743" }} />}
                 >
                   <Typography variant="h5" className={classes.submitButtonText}>
@@ -209,7 +209,7 @@ const Profile = () => {
                 <Button
                   variant="outlined"
                   color="primary"
-                  style={{ width: 144, marginRight: 30 }}
+                  fullWidth
                   startIcon={<TelegramIcon />}
                 >
                   <Typography variant="h5" className={classes.submitButtonText}>
