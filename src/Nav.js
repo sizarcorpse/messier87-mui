@@ -48,6 +48,14 @@ const useStyles = makeStyles((theme) => ({
   menu: {
     "& .MuiMenuItem-root": {
       width: 300
+    },
+    "&.MuiPopover-root": {
+      //background
+    },
+
+    "& .MuiPopover-paper": {
+      marginTop: 50,
+      top: 10
     }
   },
   root: {

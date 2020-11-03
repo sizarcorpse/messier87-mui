@@ -16,13 +16,15 @@ import Profile from "./Profile";
 import Nav from "./Nav";
 import Landing from "./Landing";
 import SkillCard from "./SkillCard";
+import Sort from "./Sort";
 
 export default function App() {
   return (
     <div className="App">
       <Router>
-        <Route path="/" component={Nav} />
+        {/* <Route path="/" component={Nav} /> */}
         <Switch>
+          <Route path="/sort" exact component={Sort} />
           <Route path="/l" exact component={Landing} />
           <Route path="/" exact component={Signin} />
           <Route path="/s" exact component={Signup} />
