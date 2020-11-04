@@ -1,8 +1,4 @@
 import React from "react";
-
-import Menux from "./Menux";
-import MenuY from "./MenuY";
-
 import {
   AppBar,
   Button,
@@ -113,73 +109,56 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Nav() {
+export default function MenuY(props) {
+  const { handleClick2, anchorEl2, setAnchorEl2, handleClose } = props;
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [anchorEl2, setAnchorEl2] = React.useState(null);
-  const [x, xx] = React.useState("hi");
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClick2 = (event) => {
-    setAnchorEl2(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-    setAnchorEl2(null);
-  };
 
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <AppBar
-        position="static"
-        color="default"
-        elevation={0}
-        className={classes.appBar}
-      >
-        <Toolbar className={classes.toolbar}>
-          <nav>
-            <Button
-              variant="outlined"
-              color="primary"
-              startIcon={<TelegramIcon />}
-              style={{ marginRight: 20 }}
-              onClick={handleClick2}
-            >
-              <Typography variant="h5" className={classes.submitButtonText}>
-                Explore Imagination
-              </Typography>
-            </Button>
-          </nav>
-          <Button
-            href="#"
-            color="primary"
-            variant="outlined"
-            className={classes.link}
-            onClick={handleClick}
-          >
-            Login
-          </Button>
-          {/*  */}
-
-          <Menux
-            handleClick={handleClick}
-            anchorEl={anchorEl}
-            setAnchorEl={setAnchorEl}
-            handleClose={handleClose}
-          />
-          <MenuY
-            handleClick2={handleClick2}
-            anchorEl2={anchorEl2}
-            setAnchorEl2={setAnchorEl2}
-            handleClose={handleClose}
-          />
-        </Toolbar>
-      </AppBar>
-    </React.Fragment>
+    <Menu
+      id="simple-menu"
+      anchorEl={anchorEl2}
+      keepMounted
+      open={Boolean(anchorEl2)}
+      onClose={handleClose}
+      className={classes.menu}
+    >
+      <MenuItem onClick={handleClose}></MenuItem>
+      <Divider
+        style={{
+          marginTop: "0px",
+          marginBottom: "20px"
+        }}
+      />
+      <MenuItem onClick={handleClose}>
+        {" "}
+        <Typography variant="p" className={classes.neckText2}>
+          Profile
+        </Typography>
+      </MenuItem>
+      <MenuItem onClick={handleClose}>
+        {" "}
+        <Typography variant="p" className={classes.neckText2}>
+          Account Setting
+        </Typography>
+      </MenuItem>
+      <MenuItem onClick={handleClose}>
+        {" "}
+        <Typography variant="p" className={classes.neckText2}>
+          Help
+        </Typography>
+      </MenuItem>
+      <Divider
+        style={{
+          marginTop: "20px",
+          marginBottom: "20px"
+        }}
+      />
+      <MenuItem onClick={handleClose}>
+        {" "}
+        <Typography variant="p" className={classes.neckText2}>
+          Logout
+        </Typography>
+      </MenuItem>
+    </Menu>
   );
 }

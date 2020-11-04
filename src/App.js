@@ -22,7 +22,7 @@ export default function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Route path="/" component={Nav} /> */}
+        <Route path="/" component={Nav} />
         <Switch>
           <Route path="/sort" exact component={Sort} />
           <Route path="/l" exact component={Landing} />
