@@ -10,26 +10,18 @@ import {
   CardHeader,
   CardContent,
   Divider,
-  Avatar,
   Typography,
   Button,
-  FormControlLabel,
-  Checkbox,
   Input,
-  CardMedia,
-  IconButton,
-  CardActions,
   TextareaAutosize,
   Select,
-  InputLabel,
-  InputBase,
-  MenuItem
+  InputLabel
 } from "@material-ui/core";
 import AddBoxIcon from "@material-ui/icons/AddBox";
-import EqualizerIcon from "@material-ui/icons/Equalizer";
 import WebAssetIcon from "@material-ui/icons/WebAsset";
-import ImageIcon from "@material-ui/icons/Image";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
+import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
+import CategoryIcon from "@material-ui/icons/Category";
 
 const ScmuiIconText = withStyles({
   root: {
@@ -117,7 +109,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 5
   },
   formControl: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(0),
     minWidth: 120,
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
@@ -148,11 +140,31 @@ const useStyles = makeStyles((theme) => ({
 
 const Skill = () => {
   const classes = useStyles();
-  const [labelWidth, setLabelWidth] = React.useState(0);
-  const [skillCoverPhoto, setSkillCoverPhoto] = useState(null);
 
+  const [skillCoverPhoto, setSkillCoverPhoto] = useState(null);
   const [previewCoverPhoto, setPreviewCoverPhoto] = useState(null);
   const imp = useRef();
+
+  const [experiance, setExperiance] = React.useState("");
+  const [platform, setPlatform] = React.useState("");
+
+  const handleExperianceChange = (event) => {
+    setExperiance(event.target.value);
+  };
+
+  const handlePlatformChange = (event) => {
+    setPlatform(event.target.value);
+  };
+
+  const [labelWidthX, setLabelWidthX] = React.useState(0);
+  const inputLabelX = React.useRef(null);
+  React.useEffect(() => {
+    setLabelWidthX(inputLabelX.current.offsetWidth);
+    setLabelWidthY(inputLabelY.current.offsetWidth);
+  }, []);
+
+  const [labelWidthY, setLabelWidthY] = React.useState(0);
+  const inputLabelY = React.useRef(null);
 
   const handlePhotoUpload = (e) => {
     if (e.target.files[0]) {
@@ -160,6 +172,7 @@ const Skill = () => {
       setPreviewCoverPhoto(URL.createObjectURL(e.target.files[0]));
     }
   };
+
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -184,7 +197,12 @@ const Skill = () => {
         <form noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <FormControl error fullWidth>
+              <FormControl
+                // error={
+                // touched.skillName && Boolean(errors.skillName)
+                // }
+                fullWidth
+              >
                 <ScmuiIconText
                   className={classes.margin}
                   InputProps={{
@@ -195,32 +213,107 @@ const Skill = () => {
                     )
                   }}
                   required
-                  label="Name of Skill"
                   variant="outlined"
-                  id="custom-css-outlined-input"
+                  label="Skill Name"
+                  name="skillName"
+                  id="skillName"
+                  // value={values.skillName}
+                  // onChange={handleChange}
+                  // onBlur={handleBlur}
                 />
               </FormControl>
             </Grid>
+
             <Grid item xs={12}>
-              <FormControl error fullWidth>
-                <ScmuiIconText
-                  className={classes.margin}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <EqualizerIcon />
-                      </InputAdornment>
-                    )
-                  }}
-                  required
-                  label="Sill Level"
-                  variant="outlined"
-                  id="custom-css-outlined-input"
-                />
+              <FormControl
+                variant="outlined"
+                className={classes.formControl}
+                fullWidth
+                required
+              >
+                <InputLabel
+                  ref={inputLabelX}
+                  className={classes.focused}
+                  id="skillExperiance"
+                >
+                  Experiance
+                </InputLabel>
+                <Select
+                  native
+                  labelId="skillExperiance"
+                  id="skillExperiance"
+                  value={experiance}
+                  onChange={handleExperianceChange}
+                  labelWidth={labelWidthX}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <BusinessCenterIcon />
+                    </InputAdornment>
+                  }
+                  style={{ color: "#132743" }}
+                >
+                  <option aria-label="None" value="" />
+                  <option value={"Hands On"}>Hands On</option>
+                  <option value={"Beginner"}>Beginner</option>
+                  <option value={"Intermediate"}>Intermediate</option>
+                  <option value={"Professional"}>Professional</option>
+                  <option value={"Expert"}>Expert</option>
+                  <option value={"Specialist"}>Specialist</option>
+                </Select>
               </FormControl>
             </Grid>
+
             <Grid item xs={12}>
-              <FormControl error fullWidth>
+              <FormControl
+                variant="outlined"
+                className={classes.formControl}
+                fullWidth
+                required
+              >
+                <InputLabel
+                  ref={inputLabelY}
+                  className={classes.focused}
+                  id="skillPlatform"
+                >
+                  Platform
+                </InputLabel>
+                <Select
+                  native
+                  labelId="skillPlatform"
+                  id="skillPlatform"
+                  value={platform}
+                  onChange={handlePlatformChange}
+                  labelWidth={labelWidthY}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <CategoryIcon />
+                    </InputAdornment>
+                  }
+                  style={{ color: "#132743" }}
+                >
+                  <option aria-label="None" value="" />
+                  <option value={"Web Development"}>Web Development</option>
+                  <option value={"Web Application"}>Web Application</option>
+                  <option value={"Web Design"}>Web Design</option>
+                  <option value={"Database"}>Database</option>
+                  <option value={"Cloud"}>Cloud</option>
+                  <option value={"Web Framework"}>Web Framework</option>
+                  <option value={"Tools"}>Tools</option>
+                  <option value={"Programming Language"}>
+                    Programming Language
+                  </option>
+                  <option value={"Graphic Design"}>Graphic Design</option>
+                </Select>
+              </FormControl>
+            </Grid>
+
+            <Grid item xs={12}>
+              <FormControl
+                // error={
+                // touched.skillWebsite && Boolean(errors.skillWebsite)
+                // }
+                fullWidth
+              >
                 <ScmuiIconText
                   className={classes.margin}
                   InputProps={{
@@ -231,9 +324,13 @@ const Skill = () => {
                     )
                   }}
                   required
-                  label="Website"
                   variant="outlined"
-                  id="custom-css-outlined-input"
+                  label="Website"
+                  name="skillWebsite"
+                  id="skillWebsite"
+                  // value={values.skillWebsite}
+                  // onChange={handleChange}
+                  // onBlur={handleBlur}
                 />
               </FormControl>
             </Grid>
@@ -244,28 +341,47 @@ const Skill = () => {
                 fullWidth
                 className={classes.uploadImageButton}
               >
-                <AddPhotoAlternateIcon />
                 {previewCoverPhoto ? (
-                  previewCoverPhoto.name
+                  <>
+                    <img
+                      src={previewCoverPhoto}
+                      alt=""
+                      style={{ height: 40 }}
+                    />{" "}
+                  </>
                 ) : (
-                  <Typography style={{ marginLeft: "3px", marginRight: "5px" }}>
-                    Choose
-                  </Typography>
+                  <>
+                    <AddPhotoAlternateIcon />
+                    <Typography
+                      style={{ marginLeft: "3px", marginRight: "5px" }}
+                    ></Typography>
+                  </>
                 )}
               </Button>
             </Grid>
+
             <Grid item xs={12}>
-              <FormControl error fullWidth required>
+              <FormControl
+                // error={
+                // touched.skillDescription && Boolean(errors.skillDescription)
+                // }
+
+                fullWidth
+                required
+              >
                 <TextareaAutosize
                   required
-                  className={classes.textArea}
-                  label="Title"
                   variant="outlined"
-                  id="custom-css-outlined-input"
+                  className={classes.textArea}
                   rowsMin={8}
                   aria-label="maximum height"
-                  placeholder="Your Message"
+                  placeholder="Share something about your skill."
                   defaultValue=""
+                  name="skillDescription"
+                  id="skillDescription"
+                  // value={values.skillDescription}
+                  // onChange={handleChange}
+                  // onBlur={handleBlur}
                 />
               </FormControl>
             </Grid>
