@@ -15,12 +15,20 @@ import {
   IconButton,
   CardActions,
   Avatar,
-  Divider
+  Divider,
+  Paper,
+  Box,
+  Modal,
+  Fade,
+  Backdrop
 } from "@material-ui/core";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import TelegramIcon from "@material-ui/icons/Telegram";
 import { makeStyles } from "@material-ui/core/styles";
-
+import CreateIcon from "@material-ui/icons/Create";
+import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
+import NoteAddIcon from "@material-ui/icons/NoteAdd";
+import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 const useStyles = makeStyles((theme) => ({
   appBar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
@@ -95,23 +103,54 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     textAlign: "left"
   },
-  submitButton: {
-    height: 40,
-    background:
-      "linear-gradient(54deg, rgba(88,203,255,1) 0%, rgba(55,182,255,1) 38%, rgba(80,161,251,1) 66%, rgba(81,198,249,1) 100%)"
+
+  MenuBox: {
+    width: 300,
+    maxWidth: 300,
+    padding: 10,
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-around"
+  },
+  MenuPaper: {
+    margin: 5
   },
   submitButtonText: {
     fontSize: 14,
-    fontWeight: 400,
+    fontWeight: 500,
     fontStyle: "normal",
     lineHeight: 1.5,
     textTransform: "none"
+  },
+  CreateIcon: {
+    height: 30,
+    width: 30
+  },
+  submitButton: {
+    height: 83,
+    width: 83,
+    borderRadius: 0
   }
 }));
 
 export default function MenuY(props) {
   const { handleClick2, anchorEl2, setAnchorEl2, handleClose } = props;
   const classes = useStyles();
+  const [ani, setAni] = React.useState(0);
+  const [openModal, setOpenModal] = React.useState(false);
+  const [openModal2, setOpenModal2] = React.useState(false);
+
+  const handleOpenModel = () => {
+    setOpenModal(true);
+  };
+  const handleOpenModel2 = () => {
+    setOpenModal2(true);
+  };
+  const handleCloseModel = () => {
+    setOpenModal(false);
+    setOpenModal2(false);
+  };
 
   return (
     <Menu
@@ -122,43 +161,65 @@ export default function MenuY(props) {
       onClose={handleClose}
       className={classes.menu}
     >
-      <MenuItem onClick={handleClose}></MenuItem>
-      <Divider
-        style={{
-          marginTop: "0px",
-          marginBottom: "20px"
-        }}
-      />
-      <MenuItem onClick={handleClose}>
-        {" "}
-        <Typography variant="p" className={classes.neckText2}>
-          Profile
-        </Typography>
-      </MenuItem>
-      <MenuItem onClick={handleClose}>
-        {" "}
-        <Typography variant="p" className={classes.neckText2}>
-          Account Setting
-        </Typography>
-      </MenuItem>
-      <MenuItem onClick={handleClose}>
-        {" "}
-        <Typography variant="p" className={classes.neckText2}>
-          Help
-        </Typography>
-      </MenuItem>
-      <Divider
-        style={{
-          marginTop: "20px",
-          marginBottom: "20px"
-        }}
-      />
-      <MenuItem onClick={handleClose}>
-        {" "}
-        <Typography variant="p" className={classes.neckText2}>
-          Logout
-        </Typography>
-      </MenuItem>
+      <Grid container className={classes.MenuBox}>
+        <Paper className={classes.MenuPaper} onClick={handleOpenModel}>
+          <IconButton className={classes.submitButton}>
+            <CreateIcon className={classes.CreateIcon} />
+            <Modal
+              className={classes.modal}
+              open={openModal}
+              onClose={handleCloseModel}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500
+              }}
+            >
+              <Fade in={openModal}>
+                <div className={classes.paper}>
+                  {/* <CreateSkill handleCloseModel={handleCloseModel} /> */}
+                  <CreateIcon className={classes.CreateIcon} />
+                </div>
+              </Fade>
+            </Modal>
+          </IconButton>
+        </Paper>
+
+        <Paper className={classes.MenuPaper} onClick={handleOpenModel2}>
+          <IconButton className={classes.submitButton}>
+            <NoteAddIcon style={{ height: 30, width: 30 }} />
+            <Modal
+              className={classes.modal}
+              open={openModal2}
+              onClose={handleCloseModel}
+              closeAfterTransition
+              BackdropComponent={Backdrop}
+              BackdropProps={{
+                timeout: 500
+              }}
+            >
+              <Fade in={openModal2}>
+                <div className={classes.paper}>
+                  {/* <CreateSkill handleCloseModel={handleCloseModel} /> */}
+                  <NoteAddIcon style={{ height: 30, width: 30 }} />
+                </div>
+              </Fade>
+            </Modal>
+          </IconButton>
+        </Paper>
+
+        <Paper className={classes.MenuPaper}>
+          <IconButton className={classes.submitButton}>
+            <AddAPhotoIcon style={{ height: 30, width: 30 }} />
+          </IconButton>
+        </Paper>
+
+        <Paper className={classes.MenuPaper}>
+          <IconButton className={classes.submitButton}>
+            <EventAvailableIcon style={{ height: 30, width: 30 }} />
+          </IconButton>
+        </Paper>
+      </Grid>
     </Menu>
   );
 }
