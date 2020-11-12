@@ -146,9 +146,9 @@ const useStyles = makeStyles((theme) => ({
 
 const Contact = () => {
   const classes = useStyles();
-  const [age, setAge] = React.useState("");
-  const inputLabel = React.useRef(null);
-  const [labelWidth, setLabelWidth] = React.useState(0);
+  const [age, setAge] = useState("");
+  const inputLabel = useRef(null);
+  const [labelWidth, setLabelWidth] = useState(0);
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
@@ -181,91 +181,165 @@ const Contact = () => {
         <form noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <FormControl error fullWidth>
+              <FormControl
+                // error={
+                // touched.firstName && Boolean(errors.firstName)
+                // }
+                fullWidth
+              >
                 <ScmuiIconText
                   className={classes.margin}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <PersonIcon />
-                      </InputAdornment>
-                    )
-                  }}
+                  // InputProps={{
+                  //   startAdornment:
+                  //     touched.firstName && Boolean(errors.firstName) ? (
+                  //       <InputAdornment position="start">
+                  //         <PersonIcon style={{ color: "red" }} />
+                  //       </InputAdornment>
+                  //     ) : (
+                  //       <InputAdornment position="start">
+                  //         <PersonIcon />
+                  //       </InputAdornment>
+                  //     )
+                  // }}
                   required
-                  label="Frist Name"
                   variant="outlined"
-                  id="custom-css-outlined-input"
+                  label="First Name"
+                  name="firstName"
+                  id="firstName"
+                  // value={values.firstName}
+                  // onChange={handleChange}
+                  // onBlur={handleBlur}
                 />
               </FormControl>
             </Grid>
             <Grid item xs={12}>
-              <FormControl error fullWidth>
+              <FormControl
+                // error={
+                // touched.lastName && Boolean(errors.lastName)
+                // }
+                fullWidth
+              >
                 <ScmuiIconText
                   className={classes.margin}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <PersonIcon />
-                      </InputAdornment>
-                    )
-                  }}
+                  // InputProps={{
+                  //   startAdornment:
+                  //     touched.lastName && Boolean(errors.lastName) ? (
+                  //       <InputAdornment position="start">
+                  //         <PersonIcon style={{ color: "red" }} />
+                  //       </InputAdornment>
+                  //     ) : (
+                  //       <InputAdornment position="start">
+                  //         <PersonIcon />
+                  //       </InputAdornment>
+                  //     )
+                  // }}
                   required
+                  variant="outlined"
                   label="Last Name"
-                  variant="outlined"
-                  id="custom-css-outlined-input"
+                  name="lastName"
+                  id="lastName"
+                  // value={values.lastName}
+                  // onChange={handleChange}
+                  // onBlur={handleBlur}
                 />
               </FormControl>
             </Grid>
             <Grid item xs={12}>
-              <FormControl error fullWidth>
+              <FormControl
+                // error={
+                // touched.email && Boolean(errors.email)
+                // }
+                fullWidth
+              >
                 <ScmuiIconText
                   className={classes.margin}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <EmailIcon />
-                      </InputAdornment>
-                    )
-                  }}
+                  // InputProps={{
+                  //   startAdornment:
+                  //     touched.email && Boolean(errors.email) ? (
+                  //       <InputAdornment position="start">
+                  //         <EmailIcon style={{ color: "red" }} />
+                  //       </InputAdornment>
+                  //     ) : (
+                  //       <InputAdornment position="start">
+                  //         <EmailIcon />
+                  //       </InputAdornment>
+                  //     )
+                  // }}
                   required
-                  label="Email"
+                  variant="outlined"
                   type="email"
-                  variant="outlined"
-                  id="custom-css-outlined-input"
+                  label="Email"
+                  name="email"
+                  id="email"
+                  // value={values.email}
+                  // onChange={handleChange}
+                  // onBlur={handleBlur}
                 />
               </FormControl>
             </Grid>
             <Grid item xs={12}>
-              <FormControl error fullWidth>
+              <FormControl
+                // error={
+                // touched.companyName && Boolean(errors.companyName)
+                // }
+                fullWidth
+              >
                 <ScmuiIconText
                   className={classes.margin}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <BusinessIcon />
-                      </InputAdornment>
-                    )
-                  }}
+                  // InputProps={{
+                  //   startAdornment:
+                  //     touched.companyName && Boolean(errors.companyName) ? (
+                  //       <InputAdornment position="start">
+                  //         <BusinessIcon style={{ color: "red" }} />
+                  //       </InputAdornment>
+                  //     ) : (
+                  //       <InputAdornment position="start">
+                  //         <BusinessIcon />
+                  //       </InputAdornment>
+                  //     )
+                  // }}
+                  required
+                  variant="outlined"
+                  type="companyName"
                   label="Company Name"
-                  variant="outlined"
-                  id="custom-css-outlined-input"
+                  name="companyName"
+                  id="companyName"
+                  // value={values.companyName}
+                  // onChange={handleChange}
+                  // onBlur={handleBlur}
                 />
               </FormControl>
             </Grid>
             <Grid item xs={12}>
-              <FormControl error fullWidth>
+              <FormControl
+                // error={
+                // touched.companyWebsite && Boolean(errors.companyWebsite)
+                // }
+                fullWidth
+              >
                 <ScmuiIconText
                   className={classes.margin}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <LanguageIcon />
-                      </InputAdornment>
-                    )
-                  }}
-                  label="Company Website"
+                  // InputProps={{
+                  //   startAdornment:
+                  //     touched.companyWebsite && Boolean(errors.companyWebsite) ? (
+                  //       <InputAdornment position="start">
+                  //         <LanguageIcon style={{ color: "red" }} />
+                  //       </InputAdornment>
+                  //     ) : (
+                  //       <InputAdornment position="start">
+                  //         <LanguageIcon />
+                  //       </InputAdornment>
+                  //     )
+                  // }}
+                  required
                   variant="outlined"
-                  id="custom-css-outlined-input"
+                  type="companyWebsite"
+                  label="Company Website"
+                  name="companyWebsite"
+                  id="companyWebsite"
+                  // value={values.companyWebsite}
+                  // onChange={handleChange}
+                  // onBlur={handleBlur}
                 />
               </FormControl>
             </Grid>
@@ -275,26 +349,42 @@ const Contact = () => {
               className={classes.formControl}
               fullWidth
               required
+              // error={
+              //   touched.skillPlatform &&
+              //   Boolean(errors.skillPlatform)
+              // }
             >
               <InputLabel
                 ref={inputLabel}
                 className={classes.focused}
-                id="demo-simple-select-outlined-label"
+                id="organization"
               >
                 What type of Organization do you work with?
               </InputLabel>
               <Select
                 native
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                value={age}
-                onChange={handleChange}
+                labelId="organization"
+                id="organization"
+                // value={values.organization}
+                // onChange={handleChange}
                 labelWidth={labelWidth}
                 startAdornment={
                   <InputAdornment position="start">
                     <BusinessCenterIcon />
                   </InputAdornment>
                 }
+                // startAdornment={
+                //   touched.skillName &&
+                //   Boolean(errors.skillName) ? (
+                //     <InputAdornment position="start">
+                //       <BusinessCenterIcon style={{ color: "red" }} />
+                //     </InputAdornment>
+                //   ) : (
+                //     <InputAdornment position="start">
+                //       <BusinessCenterIcon />
+                //     </InputAdornment>
+                //   )
+                // }
                 style={{ color: "#132743" }}
               >
                 <option aria-label="None" value="" />
@@ -309,17 +399,23 @@ const Contact = () => {
             </FormControl>
 
             <Grid item xs={12}>
-              <FormControl error fullWidth required>
+              <FormControl
+                // error={touched.contactMessage && Boolean(errors.contactMessage)}
+                fullWidth
+                required
+              >
                 <TextareaAutosize
                   required
                   className={classes.textArea}
-                  label="Title"
                   variant="outlined"
-                  id="custom-css-outlined-input"
                   rowsMin={8}
-                  aria-label="maximum height"
-                  placeholder="Your Message"
+                  placeholder="Share something about your skill."
                   defaultValue=""
+                  name="contactMessage"
+                  id="contactMessage"
+                  // value={values.contactMessage}
+                  // onChange={handleChange}
+                  // onBlur={handleBlur}
                 />
               </FormControl>
             </Grid>

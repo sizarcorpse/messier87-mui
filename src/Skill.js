@@ -199,25 +199,30 @@ const Skill = () => {
             <Grid item xs={12}>
               <FormControl
                 // error={
-                // touched.skillName && Boolean(errors.skillName)
+                // touched.firstName && Boolean(errors.firstName)
                 // }
                 fullWidth
               >
                 <ScmuiIconText
                   className={classes.margin}
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <AddBoxIcon />
-                      </InputAdornment>
-                    )
-                  }}
+                  // InputProps={{
+                  //   startAdornment:
+                  //     touched.firstName && Boolean(errors.firstName) ? (
+                  //       <InputAdornment position="start">
+                  //         <AddBoxIcon style={{ color: "red" }} />
+                  //       </InputAdornment>
+                  //     ) : (
+                  //       <InputAdornment position="start">
+                  //         <AddBoxIcon />
+                  //       </InputAdornment>
+                  //     )
+                  // }}
                   required
                   variant="outlined"
                   label="Skill Name"
-                  name="skillName"
-                  id="skillName"
-                  // value={values.skillName}
+                  name="firstName"
+                  id="firstName"
+                  // value={values.firstName}
                   // onChange={handleChange}
                   // onBlur={handleBlur}
                 />

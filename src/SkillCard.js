@@ -10,9 +10,11 @@ import {
   IconButton,
   CardActions
 } from "@material-ui/core";
-
+import ThumbUpIcon from "@material-ui/icons/ThumbUp";
 import FavoriteIcon from "@material-ui/icons/Favorite";
-
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import LinkIcon from "@material-ui/icons/Link";
+import StarsIcon from "@material-ui/icons/Stars";
 const useStyles = makeStyles((theme) => ({
   card: {
     maxWidth: 320,
@@ -28,9 +30,15 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     bottom: 180
   },
-  ico: {
+  CardHeadOption: {
     position: "relative",
-    bottom: 200
+    bottom: 440
+  },
+  IconLike: {
+    fontSize: 25
+  },
+  ButtonLike: {
+    marginRight: "auto"
   },
   headText: {
     fontSize: 30,
@@ -58,6 +66,24 @@ const useStyles = makeStyles((theme) => ({
     color: "#FFFFFF",
     display: "flex",
     textAlign: "left"
+  },
+  neckText3: {
+    fontSize: 12,
+    fontWeight: 500,
+    fontStyle: "normal",
+    color: "#FFFFFF",
+    marginRight: 5
+  },
+  StatusIcon: {
+    fontSize: 20
+  },
+  ButtonStatus: {
+    height: 20,
+    width: 20,
+    margin: "auto 2px"
+  },
+  span: {
+    marginRight: 10
   }
 }));
 
@@ -76,6 +102,16 @@ const SkillCard = () => {
         title={
           <Typography variant="h5" className={classes.headText}>
             Firebase
+            <span className={classes.span} />
+            <IconButton className={classes.ButtonStatus}>
+              <FavoriteIcon className={classes.StatusIcon} />
+            </IconButton>
+            <IconButton className={classes.ButtonStatus}>
+              <StarsIcon className={classes.StatusIcon} />
+            </IconButton>
+            <IconButton className={classes.ButtonStatus}>
+              <LinkIcon className={classes.StatusIcon} />
+            </IconButton>
           </Typography>
         }
         subheader={
@@ -89,9 +125,12 @@ const SkillCard = () => {
           </>
         }
       />
-      <CardActions className={classes.ico}>
+      <CardActions className={classes.CardHeadOption}>
+        <IconButton className={classes.ButtonLike}>
+          <ThumbUpIcon className={classes.IconLike} />
+        </IconButton>
         <IconButton>
-          <FavoriteIcon />
+          <MoreVertIcon />
         </IconButton>
       </CardActions>
     </Card>

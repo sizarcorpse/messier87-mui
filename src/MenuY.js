@@ -1,109 +1,20 @@
 import React from "react";
+import Skill from "./Skill";
 import {
-  AppBar,
-  Button,
-  Toolbar,
-  CssBaseline,
-  Typography,
-  Link,
   Menu,
-  MenuItem,
   Grid,
-  Card,
-  CardHeader,
-  CardMedia,
   IconButton,
-  CardActions,
-  Avatar,
-  Divider,
   Paper,
-  Box,
   Modal,
   Fade,
   Backdrop
 } from "@material-ui/core";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import TelegramIcon from "@material-ui/icons/Telegram";
 import { makeStyles } from "@material-ui/core/styles";
 import CreateIcon from "@material-ui/icons/Create";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import NoteAddIcon from "@material-ui/icons/NoteAdd";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 const useStyles = makeStyles((theme) => ({
-  appBar: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
-    Height: 56
-  },
-  toolbar: {
-    flexWrap: "wrap"
-  },
-  toolbarTitle: {
-    flexGrow: 1
-  },
-  link: {
-    margin: theme.spacing(1, 1.5)
-  },
-  heroContent: {
-    padding: theme.spacing(8, 0, 6)
-  },
-  cardHeader: {
-    backgroundColor:
-      theme.palette.type === "light"
-        ? theme.palette.grey[200]
-        : theme.palette.grey[700]
-  },
-
-  menu: {
-    "& .MuiMenuItem-root": {
-      width: 300
-    },
-    "&.MuiPopover-root": {
-      //background
-    },
-
-    "& .MuiPopover-paper": {
-      marginTop: 50,
-      top: 10
-    }
-  },
-  root: {
-    maxWidth: 345,
-    border: "none"
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%" // 16:9
-  },
-  avatar: {
-    paddingLeft: 0,
-    height: 50,
-    width: 50
-  },
-  neckText: {
-    fontSize: 16,
-    fontWeight: 700,
-    fontStyle: "normal",
-    color: "#696969",
-    display: "flex",
-    justifyContent: "flex-start"
-  },
-  neckText2: {
-    fontSize: 13,
-    fontWeight: 500,
-    fontStyle: "normal",
-    color: "#696969",
-    display: "flex",
-    textAlign: "left"
-  },
-  neckText3: {
-    fontSize: 15,
-    fontWeight: 500,
-    fontStyle: "normal",
-    color: "#696969",
-    display: "flex",
-    textAlign: "left"
-  },
-
   MenuBox: {
     width: 300,
     maxWidth: 300,
@@ -136,8 +47,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuY(props) {
   const { handleClick2, anchorEl2, setAnchorEl2, handleClose } = props;
+
   const classes = useStyles();
-  const [ani, setAni] = React.useState(0);
   const [openModal, setOpenModal] = React.useState(false);
   const [openModal2, setOpenModal2] = React.useState(false);
 
@@ -200,8 +111,7 @@ export default function MenuY(props) {
             >
               <Fade in={openModal2}>
                 <div className={classes.paper}>
-                  {/* <CreateSkill handleCloseModel={handleCloseModel} /> */}
-                  <NoteAddIcon style={{ height: 30, width: 30 }} />
+                  <Skill handleCloseModel={handleCloseModel} />
                 </div>
               </Fade>
             </Modal>

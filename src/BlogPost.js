@@ -1,6 +1,8 @@
 import React, { useState, useRef } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import Carousel, { Modal, ModalGateway } from "react-images";
+import Gallery from "react-photo-gallery";
 import {
   TextField,
   FormControl,
@@ -21,7 +23,9 @@ import {
   CardActions,
   TextareaAutosize,
   GridList,
-  GridListTile
+  GridListTile,
+  Paper,
+  Box
 } from "@material-ui/core";
 import TitleIcon from "@material-ui/icons/Title";
 import FaceIcon from "@material-ui/icons/Face";
@@ -128,7 +132,10 @@ const useStyles = makeStyles((theme) => ({
   },
   previewCard: {
     maxHeight: 120,
-    maxWidth: 120
+    maxWidth: 120,
+    height: 120,
+    width: "100%",
+    objectFit: "cover"
   },
   GridList: {
     overflow: "scroll"
@@ -138,7 +145,6 @@ const useStyles = makeStyles((theme) => ({
 const BlogPost = () => {
   const classes = useStyles();
   const [skillCoverPhoto, setSkillCoverPhoto] = useState(null);
-
   const [previewCoverPhoto, setPreviewCoverPhoto] = useState([]);
   const imp = useRef();
 
@@ -152,7 +158,17 @@ const BlogPost = () => {
       setPreviewCoverPhoto((cv) => [...cv, xx]);
     }
   };
-  // arr.push(URL.createObjectURL(pic)
+
+  const photosz = [];
+
+  if (previewCoverPhoto) {
+    previewCoverPhoto.map((pt) => {
+      console.log("image", pt);
+
+      let cons = { src: pt, key: Math.random() };
+      photosz.push(cons);
+    });
+  }
 
   return (
     <Card className={classes.card}>
@@ -212,7 +228,7 @@ const BlogPost = () => {
             </Grid>
             {previewCoverPhoto.length > 0 ? (
               <Grid item xs={12} style={{ overflow: "auto", maxHeight: 250 }}>
-                <GridList cellHeight={120} spacing={0} cols={5}>
+                <GridList cellHeight={120} spacing={0} cols={4}>
                   {previewCoverPhoto.map((pc) => (
                     <GridListTile cols={1} spacing={0}>
                       <Link>
