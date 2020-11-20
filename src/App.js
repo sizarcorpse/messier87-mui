@@ -17,6 +17,7 @@ import Nav from "./Nav";
 import Landing from "./Landing";
 import SkillCard from "./SkillCard";
 import Sort from "./Sort";
+import FeaturedSkill from "./FeaturedSkill";
 
 export default function App() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="/sk" exact component={Skill} />
           <Route path="/sc" exact component={SkillCard} />
           <Route path="/p" exact component={Profile} />
+          <Route path="/f" exact component={FeaturedSkill} />
         </Switch>
       </Router>
     </div>
